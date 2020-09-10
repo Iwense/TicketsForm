@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Form from './components/Form';
 import TicketsList from './components/TicketsList';
@@ -7,16 +6,41 @@ import TicketsList from './components/TicketsList';
 class App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = [
-      { id: 1, name: 'PResossa', text: 'Hello world twice', phone: '+79220022455', city: 'Moscow' },
-    ]
+    this.state = {
+      tickets: [
+        { id: 1, name: 'PResossa', text: 'Hello world twice', phone: '+79220022455', city: 'Moscow' },
+      ]
+    }
+  }
+
+  handleDelete = index => {
+    const newArr = [...this.state.tickets]
+    newArr.splice(index, 1)
+    this.setState({ tickets: newArr })
+  }
+
+  handleSubmit = ticket => {
+    let id = 0
+    if (this.state.tickets.length !== 0) {
+      id = this.state.tickets[0].id + 1
+    }
+
+    const newItem = {
+      id,
+      name: ticket.termName,
+      text: ticket.termText,
+      phone: ticket.termPhone,
+      city: ticket.termCity
+    }
+
+    this.setState({ tickets: [newItem, ...this.state.tickets] })
   }
 
   render() {
     return (
       <div className="wrapper">
-        <Form />
-        <TicketsList state={this.state} />
+        <Form onSubmit={this.handleSubmit} />
+        <TicketsList state={this.state.tickets} onDelete={this.handleDelete} />
       </div>
       /*Заголовок 140 символов
       Текст обьявления 300 символов
