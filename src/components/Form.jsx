@@ -1,5 +1,5 @@
 import React from 'react'
-
+import InputMask from 'react-input-mask';
 
 class Form extends React.Component {
    state = {
@@ -22,6 +22,7 @@ class Form extends React.Component {
       });
    }
 
+
    render() {
 
       return (
@@ -33,6 +34,7 @@ class Form extends React.Component {
                      <input className="ticket__input" required
                         type="text"
                         placeholder="Введите заголовок"
+                        maxLength="130"
                         name="ticketName"
                         value={this.state.termName}
                         onChange={(e) => this.setState({ ...this.state, termName: e.target.value })} />
@@ -41,6 +43,7 @@ class Form extends React.Component {
                      <p className="ticket__pretext"> Текст обьявления  </p>
                      <textarea className="ticket__input"
                         placeholder="Введите текст"
+                        maxLength="300"
                         name="ticketText"
                         value={this.state.termText}
                         onChange={(e) => this.setState({ ...this.state, termText: e.target.value })} />
@@ -51,12 +54,14 @@ class Form extends React.Component {
                <div className="ticket__form-block">
                   <label className="ticket__label">
                      <p className="ticket__pretext"> Телефон </p>
-                     <input className="ticket__input"
-                        type="phone" required
+                     <InputMask className="ticket__input"
+                        type="tel" required
                         placeholder="Введите телефон"
                         name="ticketPhone"
+                        mask="+7 (999) 999 99 99"
                         value={this.state.termPhone}
-                        onChange={(e) => this.setState({ ...this.state, termPhone: e.target.value })} />
+                        onChange={(e) => this.setState({ ...this.state, termPhone: e.target.value })}
+                     />
                   </label>
 
                   <label className="ticket__label">

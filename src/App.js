@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       tickets: [
-        { id: 1, name: 'PResossa', text: 'Hello world twice', phone: '+79220022455', city: 'Moscow' },
+        { id: 1, name: 'Поиск работы', text: 'Frontend-разработчик ищет работу в интересной компании', phone: '+79200832824', city: 'Москва' },
       ]
     }
   }
